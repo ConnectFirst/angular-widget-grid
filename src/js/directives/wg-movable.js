@@ -1,14 +1,14 @@
 /// <reference path="../../../typings/angularjs/angular.d.ts"/>
 
 (function () {
-  angular.module('widgetGrid').directive('wgMovable', function (gridUtil) {
+  angular.module('widgetGrid').directive('wgMovable', function (widgetGrid_gridUtil) {
     return {
       restrict: 'A',
       require: 'wgWidget',
       link: {
         pre: function (scope, element, attrs, widgetCtrl) {
           // init & append template
-          var templateContent = gridUtil.getTemplate('wg-movable');
+          var templateContent = widgetGrid_gridUtil.getTemplate('wg-movable');
           if (templateContent) {
             var template = angular.element(templateContent);
             element.append(template);
@@ -20,7 +20,7 @@
   });
 
 
-  angular.module('widgetGrid').directive('wgMover', function ($document, gridUtil, PathIterator) {
+  angular.module('widgetGrid').directive('wgMover', function ($document, widgetGrid_gridUtil, PathIterator) {
     return {
       restrict: 'A',
       require: '^wgGrid',
@@ -35,9 +35,9 @@
           eventMove = 'mousemove touchmove';
           eventUp = 'mouseup touchend touchcancel';
         }
-        
+
         element.on(eventDown, onDown);
-        
+
         function onDown(event) {
           event.preventDefault();
           if (angular.isObject(event.originalEvent)) {
@@ -158,7 +158,7 @@
 
           while (path.hasNext()) {
             var currPos = path.next();
-            
+
             var targetArea = {
               top: currPos.top,
               left: currPos.left,
