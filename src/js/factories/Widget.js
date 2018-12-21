@@ -2,21 +2,21 @@
   /**
    * @ngdoc object
    * @name widgetGrid.Widget
-   * 
+   *
    * @description
    * Describes a widget container.
-   * 
+   *
    * @requires widgetGrid.GridArea
    */
-  angular.module('widgetGrid').factory('Widget', function (GridArea) {
+  angular.module('widgetGrid').factory('widgetGrid_Widget', function (GridArea) {
     /**
      * @ngdoc method
      * @name Widget
      * @methodOf widgetGrid.Widget
-     * 
+     *
      * @description
      * Constructor.
-     * 
+     *
      * @param {GridArea} gridArea Widget position
      */
     var Widget = function Widget(gridArea) {
@@ -34,10 +34,10 @@
      * @ngdoc method
      * @name getPosition
      * @methodOf widgetGrid.Widget
-     * 
+     *
      * @description
      * Gets the position of a widget.
-     * 
+     *
      * @return {GridArea} Widget position
      */
     Widget.prototype.getPosition = function () {
@@ -49,10 +49,10 @@
      * @ngdoc method
      * @name setPosition
      * @methodOf widgetGrid.Widget
-     * 
+     *
      * @description
      * Updates the position of a widget.
-     * 
+     *
      * @param {GridArea} gridArea Widget position
      */
     Widget.prototype.setPosition = function (gridArea) {
@@ -65,7 +65,7 @@
 
     /**
      * Generates a unique identifier (UID).
-     * 
+     *
      * @return {number} Unique identifier
      */
     var nextId = 1;

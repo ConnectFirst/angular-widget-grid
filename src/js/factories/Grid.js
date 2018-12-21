@@ -4,26 +4,26 @@
 
   /**
    * @ngdoc object
-   * @name widgetGrid.Grid
-   * 
+   * @name widgetGrid.widgetGrid_Grid
+   *
    * @description
    * Describes a grid.
-   * 
+   *
    * @requires widgetGrid.CellSize
    */
-  angular.module('widgetGrid').factory('Grid', function (CellSize) {
+  angular.module('widgetGrid').factory('widgetGrid_Grid', function (CellSize) {
     /**
      * @ngdoc method
-     * @name Grid
-     * @methodOf widgetGrid.Grid
-     * 
+     * @name widgetGrid_Grid
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Constructor.
-     * 
+     *
      * @param {number} rows Row count
      * @param {number} columns Column count
      */
-    var Grid = function Grid(rows, columns) {
+    var widgetGrid_Grid = function widgetGrid_Grid(rows, columns) {
       this.widgets = [];
       this.rows = parseInt(rows) || DEFAULT_ROWS;
       this.columns = parseInt(columns) || DEFAULT_COLUMNS;
@@ -34,14 +34,14 @@
     /**
      * @ngdoc method
      * @name add
-     * @methodOf widgetGrid.Grid
-     * 
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Adds a widget to the grid.
-     * 
+     *
      * @param {Widget} widget Widget
      */
-    Grid.prototype.add = function (widget) {
+    widgetGrid_Grid.prototype.add = function (widget) {
       this.widgets.push(widget);
     };
 
@@ -49,14 +49,14 @@
     /**
      * @ngdoc method
      * @name remove
-     * @methodOf widgetGrid.Grid
-     * 
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Removes a widget from the grid, if contained.
-     * 
+     *
      * @param {Widget} widget Widget
      */
-    Grid.prototype.remove = function (widget) {
+    widgetGrid_Grid.prototype.remove = function (widget) {
       var widgetIndex = this.widgets.indexOf(widget);
       if (widgetIndex >= 0) {
         this.widgets.splice(widgetIndex, 1);
@@ -67,15 +67,15 @@
     /**
      * @ngdoc method
      * @name resize
-     * @methodOf widgetGrid.Grid
-     * 
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Changes the size of the grid.
-     * 
+     *
      * @param {number} rows Row count
      * @param {number} columns Column count
      */
-    Grid.prototype.resize = function (rows, columns) {
+    widgetGrid_Grid.prototype.resize = function (rows, columns) {
       columns = parseInt(columns) || 0;
       rows = parseInt(rows) || 0;
 
@@ -86,6 +86,6 @@
       }
     };
 
-    return Grid;
+    return widgetGrid_Grid;
   });
 })();

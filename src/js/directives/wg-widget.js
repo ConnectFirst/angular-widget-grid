@@ -16,7 +16,7 @@
    * @restict AE
    * @requires widgetGrid.Widget
    */
-  angular.module('widgetGrid').directive('wgWidget', function (Widget) {
+  angular.module('widgetGrid').directive('wgWidget', function (widgetGrid_Widget) {
     return {
       scope: {
         position: '=',
@@ -29,7 +29,7 @@
       templateUrl: 'wg-widget',
       replace: true,
       link: function (scope, element, attrs, gridCtrl) {
-        var widget = new Widget(scope.position);
+        var widget = new widgetGrid_Widget(scope.position);
 
         scope.editable = 'false';
         scope.widget = widget;

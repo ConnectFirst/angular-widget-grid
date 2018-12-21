@@ -152,13 +152,13 @@
    * @requires $element
    * @requires $scope
    * @requires $timeout
-   * @requires widgetGrid.Grid
+   * @requires widgetGrid.widgetGrid_Grid
    * @requires widgetGrid.gridRenderer
    */
-  angular.module('widgetGrid').controller('wgGridController', ['$element', '$scope', '$timeout', 'Grid', 'gridRenderer', function ($element, $scope, $timeout, Grid, gridRenderer) {
+  angular.module('widgetGrid').controller('wgGridController', ['$element', '$scope', '$timeout', 'widgetGrid_Grid', 'gridRenderer', function ($element, $scope, $timeout, widgetGrid_Grid, gridRenderer) {
     var vm = this;
 
-    vm.grid = new Grid($scope.rows, $scope.columns);
+    vm.grid = new widgetGrid_Grid($scope.rows, $scope.columns);
     vm.rendering = null;
     vm.highlight = null;
     vm.options = DEFAULT_OPTIONS;
@@ -874,7 +874,7 @@
    * @restict AE
    * @requires widgetGrid.Widget
    */
-  angular.module('widgetGrid').directive('wgWidget', ['Widget', function (Widget) {
+  angular.module('widgetGrid').directive('wgWidget', ['widgetGrid_Widget', function (widgetGrid_Widget) {
     return {
       scope: {
         position: '=',
@@ -887,7 +887,7 @@
       templateUrl: 'wg-widget',
       replace: true,
       link: function (scope, element, attrs, gridCtrl) {
-        var widget = new Widget(scope.position);
+        var widget = new widgetGrid_Widget(scope.position);
 
         scope.editable = 'false';
         scope.widget = widget;
@@ -996,26 +996,26 @@
 
   /**
    * @ngdoc object
-   * @name widgetGrid.Grid
-   * 
+   * @name widgetGrid.widgetGrid_Grid
+   *
    * @description
    * Describes a grid.
-   * 
+   *
    * @requires widgetGrid.CellSize
    */
-  angular.module('widgetGrid').factory('Grid', ['CellSize', function (CellSize) {
+  angular.module('widgetGrid').factory('widgetGrid_Grid', ['CellSize', function (CellSize) {
     /**
      * @ngdoc method
-     * @name Grid
-     * @methodOf widgetGrid.Grid
-     * 
+     * @name widgetGrid_Grid
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Constructor.
-     * 
+     *
      * @param {number} rows Row count
      * @param {number} columns Column count
      */
-    var Grid = function Grid(rows, columns) {
+    var widgetGrid_Grid = function widgetGrid_Grid(rows, columns) {
       this.widgets = [];
       this.rows = parseInt(rows) || DEFAULT_ROWS;
       this.columns = parseInt(columns) || DEFAULT_COLUMNS;
@@ -1026,14 +1026,14 @@
     /**
      * @ngdoc method
      * @name add
-     * @methodOf widgetGrid.Grid
-     * 
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Adds a widget to the grid.
-     * 
+     *
      * @param {Widget} widget Widget
      */
-    Grid.prototype.add = function (widget) {
+    widgetGrid_Grid.prototype.add = function (widget) {
       this.widgets.push(widget);
     };
 
@@ -1041,14 +1041,14 @@
     /**
      * @ngdoc method
      * @name remove
-     * @methodOf widgetGrid.Grid
-     * 
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Removes a widget from the grid, if contained.
-     * 
+     *
      * @param {Widget} widget Widget
      */
-    Grid.prototype.remove = function (widget) {
+    widgetGrid_Grid.prototype.remove = function (widget) {
       var widgetIndex = this.widgets.indexOf(widget);
       if (widgetIndex >= 0) {
         this.widgets.splice(widgetIndex, 1);
@@ -1059,15 +1059,15 @@
     /**
      * @ngdoc method
      * @name resize
-     * @methodOf widgetGrid.Grid
-     * 
+     * @methodOf widgetGrid.widgetGrid_Grid
+     *
      * @description
      * Changes the size of the grid.
-     * 
+     *
      * @param {number} rows Row count
      * @param {number} columns Column count
      */
-    Grid.prototype.resize = function (rows, columns) {
+    widgetGrid_Grid.prototype.resize = function (rows, columns) {
       columns = parseInt(columns) || 0;
       rows = parseInt(rows) || 0;
 
@@ -1078,7 +1078,7 @@
       }
     };
 
-    return Grid;
+    return widgetGrid_Grid;
   }]);
 })();
 
@@ -1713,21 +1713,21 @@
   /**
    * @ngdoc object
    * @name widgetGrid.Widget
-   * 
+   *
    * @description
    * Describes a widget container.
-   * 
+   *
    * @requires widgetGrid.GridArea
    */
-  angular.module('widgetGrid').factory('Widget', ['GridArea', function (GridArea) {
+  angular.module('widgetGrid').factory('widgetGrid_Widget', ['GridArea', function (GridArea) {
     /**
      * @ngdoc method
      * @name Widget
      * @methodOf widgetGrid.Widget
-     * 
+     *
      * @description
      * Constructor.
-     * 
+     *
      * @param {GridArea} gridArea Widget position
      */
     var Widget = function Widget(gridArea) {
@@ -1745,10 +1745,10 @@
      * @ngdoc method
      * @name getPosition
      * @methodOf widgetGrid.Widget
-     * 
+     *
      * @description
      * Gets the position of a widget.
-     * 
+     *
      * @return {GridArea} Widget position
      */
     Widget.prototype.getPosition = function () {
@@ -1760,10 +1760,10 @@
      * @ngdoc method
      * @name setPosition
      * @methodOf widgetGrid.Widget
-     * 
+     *
      * @description
      * Updates the position of a widget.
-     * 
+     *
      * @param {GridArea} gridArea Widget position
      */
     Widget.prototype.setPosition = function (gridArea) {
@@ -1776,7 +1776,7 @@
 
     /**
      * Generates a unique identifier (UID).
-     * 
+     *
      * @return {number} Unique identifier
      */
     var nextId = 1;

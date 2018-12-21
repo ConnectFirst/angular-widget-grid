@@ -18,13 +18,13 @@
    * @requires $element
    * @requires $scope
    * @requires $timeout
-   * @requires widgetGrid.Grid
+   * @requires widgetGrid.widgetGrid_Grid
    * @requires widgetGrid.gridRenderer
    */
-  angular.module('widgetGrid').controller('wgGridController', function ($element, $scope, $timeout, Grid, gridRenderer) {
+  angular.module('widgetGrid').controller('wgGridController', function ($element, $scope, $timeout, widgetGrid_Grid, gridRenderer) {
     var vm = this;
 
-    vm.grid = new Grid($scope.rows, $scope.columns);
+    vm.grid = new widgetGrid_Grid($scope.rows, $scope.columns);
     vm.rendering = null;
     vm.highlight = null;
     vm.options = DEFAULT_OPTIONS;
