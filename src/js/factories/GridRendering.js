@@ -398,6 +398,9 @@
               currWidth = (j - start.left + 1),
               currSurfaceArea = currHeight * currWidth;
 
+          if(currHeight > 8) {
+            currHeight = 8;
+          }
           if (currSurfaceArea > maxSurfaceArea) {
             maxSurfaceArea = currSurfaceArea;
             maxArea = new GridArea(start.top, start.left, currHeight, currWidth);
