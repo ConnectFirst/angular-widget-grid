@@ -386,6 +386,7 @@
 
       var maxArea = null,
           maxSurfaceArea = 0,
+          maxAvailableHeight = 8,
           endColumn = rendering.grid.columns;
       for (var i = start.top; i <= rendering.grid.rows; i++) {
         for (var j = start.left; j <= endColumn; j++) {
@@ -398,8 +399,8 @@
               currWidth = (j - start.left + 1),
               currSurfaceArea = currHeight * currWidth;
 
-          if(currHeight > 8) {
-            currHeight = 8;
+          if(currHeight > maxAvailableHeight) {
+            currHeight = maxAvailableHeight;
           }
           if (currSurfaceArea > maxSurfaceArea) {
             maxSurfaceArea = currSurfaceArea;
